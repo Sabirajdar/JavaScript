@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>MobileValid</title>
+        <script type="text/javascript">
+       function acceptNumber(str)
+		{
+			let flag=false;
+			for(var i=0;i<str.length;i++)
+			{
+				let ch=str.charCodeAt(i);
+				if(!((ch>=48 && ch<=57)&& str.length==10))
+				{
+					flag=true;
+					break;
+				}				
+			}
+			if(flag)
+			{
+				let span=document.getElementById("s");
+				 span.style.color="red";
+				 span.innerHTML="invalid";
+			}else
+			{
+				let span=document.getElementById("s");
+				 span.style.color="green";
+				 span.innerHTML="valid";
+			}
+		}	   
+</script>
+    </head>
+    <body>
+        <input type='text' name='mobile'id='e' value=''placeholder='Enter Mobile'style='width:200px;height:40px;'onkeyup="acceptNumber(this.value)"/>
+        <span id='s'></span>
+    </body>
+</html>

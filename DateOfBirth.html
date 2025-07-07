@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Adharcard</title>
+<script type='text/javascript'>
+	function adhracard(str)
+	{
+		let flag=false;
+		if (str.length !== 10) {
+			flag = true;
+		} else {
+			for (let i = 0; i < str.length; i++) {
+				let ch = str.charCodeAt(i);
+				
+				if (i === 2 || i === 5) {
+					if (ch !== 47) {
+						flag = true;
+						break;
+					}
+				}
+				else {
+					if (!(ch >= 48 && ch <= 57)) {
+						flag = true;
+						break;
+					}
+				}
+			}
+			if (!flag) {
+            let day = parseInt(str.substring(0, 2), 10);
+            let month = parseInt(str.substring(3, 5), 10);
+
+            if (day < 1 || day > 31 || month < 1 || month > 12) {
+                flag = true;
+            }
+		}
+}
+			let dobirth=document.getElementById("dob");
+			if(flag)
+			{
+				dobirth.style.color="red";
+				dobirth.innerHTML="Invalid Birth";
+			}else{
+				dobirth.style.color="green";
+				dobirth.innerHTML="valid Birth";
+			}
+	}
+</script>
+</head>
+<body>
+<input type="text" name="dobirth" id="dobirth" placeholder="Enter Data of Birth" style="width:400px;height:40px" onkeyup="adhracard(this.value)"/>
+<span id="dob"></span>
+</body>
+</html>

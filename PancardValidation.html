@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Pancard</title>
+<script type='text/javascript'>
+	function pancard(str)
+	{
+		let flag=false;
+		for(let i=0;i<str.length;i++)
+		{
+			let ch=str.charCodeAt(i);
+			
+			if(i<5)
+			{
+				if(!(ch>=65 && ch<=90))
+				{
+					flag=true;
+					break;
+				}
+			}else if(i<9)
+			{
+				if(!(ch>=48 && ch<=57))
+				{
+					flag=true;
+					break;
+				}
+			}else{
+				if(!(ch>=65 && ch<=90))
+				{
+					flag=true;
+					break;
+				}
+			}
+			if(str.length!==10)
+			{
+				flag=true;
+				break;
+			}
+			
+		}
+		
+					let panc=document.getElementById("s");
+			if(flag)
+			{
+				panc.style.color="red";
+				panc.innerHTML="Invalid pan";
+			}else{
+								panc.style.color="green";
+
+				panc.innerHTML="valid";
+			}
+	}
+</script>
+</head>
+<body>
+<input type="text" name="pancard" id="pancard" placeholder="Enter Pancard" style="width:400px;height:40px" onkeyup="pancard(this.value)"/>
+<span id="s"></span>
+</body>
+</html>

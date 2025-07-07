@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Adharcard</title>
+<script type='text/javascript'>
+	function adhracard(str)
+	{
+		let flag=false;
+		if(str.length!==14)
+		{
+			flag=true;
+			
+		}else{
+		
+			for(let i=0;i<str.length;i++)
+			{
+				let ch=str.charCodeAt(i);
+			
+			 if(i===4 || i===9)
+			{
+				if(ch !==32)
+				{
+						flag=true;
+						break;
+				}
+			}
+			else
+			{
+				if(!(ch>=48 && ch<=57))
+				{
+					flag=true;
+					break;
+				}
+			}
+			}
+			}
+			let adhar=document.getElementById("s");
+			if(flag)
+			{
+				adhar.style.color="red";
+				adhar.innerHTML="Invalid adhar";
+			}else{
+				adhar.style.color="green";
+				adhar.innerHTML="valid";
+				
+			}
+	}
+</script>
+</head>
+<body>
+<input type="text" name="adharc" id="adharc" placeholder="Enter adharcard" style="width:400px;height:40px" onkeyup="adhracard(this.value)"/>
+<span id="s"></span>
+</body>
+</html>
