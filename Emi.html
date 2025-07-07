@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EMI Calculator</title>
+  <style>
+    .container
+        {
+            height: 600px;
+            width: 600px;
+            display: flex;
+            flex-direction: row;
+            margin: auto;
+            background-color: bisque;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .first{
+            height: 600px;
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .output{
+            justify-content: center;
+            align-items: center;
+            padding-top: 160px;
+            position: relative;
+            right: 80px;
+            font-size: large;
+        }
+        input{
+            height: 100px;
+            width: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+  </style>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+          const loanSlider = document.getElementById("loan");
+          const yearSlider = document.getElementById("year");
+          const rateSlider = document.getElementById("rate");
+    
+          const loanValue = document.getElementById("loanValue");
+          const yearValue = document.getElementById("yearValue");
+          const rateValue = document.getElementById("rateValue");
+    
+          const interestOutput = document.getElementById("interest");
+          const totalOutput = document.getElementById("total");
+          const emiOutput = document.getElementById("emi");
+    
+          function calculateEMI() {
+            const principal = parseFloat(loanSlider.value);
+            const rate = parseFloat(rateSlider.value);
+            const years = parseFloat(yearSlider.value);
+    
+            const interest = (principal * rate * years) / 100;
+            const totalAmount = principal + interest;
+            const months = years * 12;
+            const emi = totalAmount / months;
+    
+            interestOutput.textContent = interest.toFixed(2);
+            totalOutput.textContent = totalAmount.toFixed(2);
+            emiOutput.textContent = emi.toFixed(2);
+          }
+    
+          function updateAll() {
+            loanValue.textContent = loanSlider.value;
+            yearValue.textContent = yearSlider.value;
+            rateValue.textContent = rateSlider.value;
+            calculateEMI();
+          }
+    
+          loanSlider.addEventListener("input", updateAll);
+          yearSlider.addEventListener("input", updateAll);
+          rateSlider.addEventListener("input", updateAll);
+    
+          updateAll();
+        });
+      </script>
+</head>
+<body>
+<div class="container">
+  <div class="first">
+    <h1>EMI Calculator</h1><br>
+
+    <label>
+      Loan Amount: ₹<span id="loanValue">2500000</span><br>
+      <input type="range" id="loan" min="100000" max="10000000" step="100000" value="2500000">
+    </label>
+
+    <label>
+      Tenure (years): <span id="yearValue">30</span><br>
+      <input type="range" id="year" min="1" max="30" value="30">
+    </label>
+
+    <label>
+      Interest Rate (% P.A.): <span id="rateValue">8.7</span>%<br>
+      <input type="range" id="rate" min="1" max="20" step="0.1" value="8.7">
+    </label>
+  </div>
+  <div class="output">
+    <p>Total Amount Payable: ₹<span id="total">0</span></p>
+    <p>Interest: ₹<span id="interest">0</span></p>
+    <p>Monthly EMI: ₹<span id="emi">0</span></p>
+  </div>
+</div>
+</body>
+</html>
